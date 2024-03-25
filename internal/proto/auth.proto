@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "github.com/xxlifestyle/auth_service/auth";
+
+service Auth{
+    rpc Login (LoginRequest) returns (LoginResponse);
+    rpc Register (RegisterRequest) returns (RegisterResponse);
+}
+
+message LoginRequest{
+    string email = 1; // Email of the user to login.
+    string password = 2; // Password of the user to login.
+    int32 app_id = 3; // ID of the app to login to.
+}
+
+message LoginResponse{
+    string token = 1; // Auth token of the logged in user.
+}
+
+message RegisterRequest{
+    string email = 1; // Email of the user to login.
+    string username = 2;
+    string password = 3; // Password of the user to login.
+    string birthday_date = 4;
+}
+
+message RegisterResponse{
+    string token = 1; // Auth token of the logged in user.
+}
