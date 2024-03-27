@@ -7,7 +7,9 @@ import (
 	"net"
 
 	auth "github.com/xxlifestyle/auth_service/gen/go"
+	"github.com/xxlifestyle/auth_service/internal/repository"
 	"github.com/xxlifestyle/auth_service/pkg/config"
+	"github.com/xxlifestyle/auth_service/pkg/postgres"
 	"google.golang.org/grpc"
 )
 
@@ -28,6 +30,15 @@ func (s myAuthServer) Register(ctx context.Context, req *auth.RegisterRequest) (
 
 func Run(cfg *config.ServiceConfig) {
 	fmt.Println(cfg)
+	db, err := postgres.New(cfg.DBConfig.User, cfg.DBConfig.Password, cfg.DBConfig.Host, cfg.DBConfig.Port, cfg.DBConfig.DBName)
+	if err != nil {
+		log.Fatalf("error while connecting to database, err: %v", err)
+	}
+	userRepository := repository.NewUserPostgresRepository(db)
+
+	//userInteractor
+
+	//userController
 
 	lis, err := net.Listen("tcp", ":"+cfg.Port)
 	if err != nil {
