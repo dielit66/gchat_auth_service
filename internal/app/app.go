@@ -7,6 +7,8 @@ import (
 	"net"
 
 	auth "github.com/xxlifestyle/auth_service/gen/go"
+	"github.com/xxlifestyle/auth_service/internal/controller"
+	"github.com/xxlifestyle/auth_service/internal/interactor"
 	"github.com/xxlifestyle/auth_service/internal/repository"
 	"github.com/xxlifestyle/auth_service/pkg/config"
 	"github.com/xxlifestyle/auth_service/pkg/postgres"
@@ -36,7 +38,9 @@ func Run(cfg *config.ServiceConfig) {
 	}
 	userRepository := repository.NewUserPostgresRepository(db)
 
-	//userInteractor
+	userInteractor := interactor.NewUserInteractor(userRepository)
+
+	userController := controller.NewUserController(userInteractor)
 
 	//userController
 

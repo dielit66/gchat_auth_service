@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/xxlifestyle/auth_service/internal/proto/app"
+	"github.com/xxlifestyle/auth_service/internal/app"
 	"github.com/xxlifestyle/auth_service/pkg/config"
 )
 

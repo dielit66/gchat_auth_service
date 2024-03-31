@@ -9,3 +9,10 @@ type User struct {
 	IsEmailConfirmed bool   `db:"is_email_confirmed" json:"is_email_confirmed"`
 	Role             string `db:"role" json:"role"`
 }
+
+type CreateUserDTO struct {
+	Username     string `json:"username"`
+	Password     string `json:"password"`
+	BirthdayDate string `json:"birthday_date"`
+	Email        string `json:"email"`
+}
