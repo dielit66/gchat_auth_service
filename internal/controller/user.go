@@ -1,13 +1,29 @@
 package controller
 
-import "github.com/xxlifestyle/auth_service/internal/interactor"
+import (
+	"net/http"
 
-type UserController struct {
+	"github.com/xxlifestyle/auth_service/internal/interactor"
+)
+
+type userController struct {
 	userInteractor interactor.UserInteractor
 }
 
-func NewUserController(userInteractor interactor.UserInteractor) *UserController {
-	return &UserController{
+type UserController interface {
+	GetUser(w http.ResponseWriter, r *http.Request)
+	CreateUser(w http.ResponseWriter, r *http.Request)
+}
+
+func (uc *userController) GetUser(w http.ResponseWriter, r *http.Request) {
+
+}
+func (uc *userController) CreateUser(w http.ResponseWriter, r *http.Request) {
+
+}
+
+func NewUserController(userInteractor interactor.UserInteractor) UserController {
+	return &userController{
 		userInteractor: userInteractor,
 	}
 }
